@@ -1,5 +1,5 @@
 // class has to be exported
-module.exports = class Battleship {
+export default class Battleship {
   constructor(length) {
     this.length = length;
     this.hits = 0;
