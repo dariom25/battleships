@@ -1,6 +1,9 @@
 export default class Vertex {
   constructor(coordinates) {
     this.coordinates = coordinates;
-    this.legalMoves = [];
+    this.up = null;
+    this.down = null;
+    this.left = null;
+    this.right = null;
   }
 }
