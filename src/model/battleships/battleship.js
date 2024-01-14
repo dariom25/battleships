@@ -4,6 +4,7 @@ export default class Battleship {
     this.length = length;
     this.hits = 0;
     this.sunk = false
+    this.coordinates = []
   }
 
   hit() {
