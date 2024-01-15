@@ -1,8 +1,12 @@
+import Queue from "./queue";
+import Battleship from "../battleships/battleship";
 import Vertex from "./vertex";
 
 export default class Gameboard {
   constructor() {
     this.vertices = {};
+    this.battleshipts = [];
+    this.createGameboard()
   }
 
   arrayToKey(array) {
@@ -23,18 +27,18 @@ export default class Gameboard {
     ];
     let vertices = Object.values(this.vertices);
     vertices.forEach((vertex) => {
-      const row = vertex.values[0];
-      const col = vertex.values.slice(-1);
-      legalConnections.forEach(connection => {
-        const newRow = parseInt(row) + connection[0]
-        const newCol = parseInt(col) + connection[1]
+      const row = vertex.coordinates[0];
+      const col = vertex.coordinates.slice(-1);
+      legalConnections.forEach((connection) => {
+        const newRow = parseInt(row) + connection[0];
+        const newCol = parseInt(col) + connection[1];
         if (newRow <= 9 && newRow >= 0 && newCol <= 9 && newCol >= 0) {
-            const targetVertex = this.findVertex([newRow, newCol])
-            if (targetVertex !== null) {
-                vertex.addConnection(targetVertex)
-            }
+          const targetVertex = this.findVertex([newRow, newCol]);
+          if (targetVertex !== null) {
+            vertex.addConnection(targetVertex);
+          }
         }
-      })
+      });
     });
   }
 
@@ -54,4 +58,6 @@ export default class Gameboard {
     }
     return null;
   }
+
+
 }
