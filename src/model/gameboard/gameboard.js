@@ -59,5 +59,37 @@ export default class Gameboard {
     return null;
   }
 
+  placeBattleship(startCoordinate, endCoordinate) {
+    // check if the coordinates are legal --> add eventlistener to each cell
+    // check if ship exists already
 
+    const startVertex = this.findVertex(startCoordinate);
+    const endVertex = this.findVertex(endCoordinate);
+
+    if (startVertex === null) return null;
+    if (endVertex === null) return null;
+    if (startVertex === endVertex) return null;
+
+    let queue = new Queue();
+    let visited = new Set();
+
+    queue.enqueue([startVertex, [startVertex.values]]);
+    visited.add(startVertex);
+    while (queue.queue.length !== 0) {
+      const [vertex, path] = queue.dequeue();
+      if (vertex === endVertex) return path;
+      if (!visited.has(vertex)) {
+        visited.add(vertex);
+      }
+      // legal moves do not exist anymore
+      vertex.legalMoves.forEach((move) => {
+        if (!visited.has(move)) {
+          visited.add(move);
+          let newPath = path.concat(move.values);
+          queue.enqueue([move, [newPath]]);
+        }
+      });
+    }
+    return null;
+  }
 }
