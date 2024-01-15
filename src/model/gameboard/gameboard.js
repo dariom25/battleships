@@ -92,5 +92,20 @@ export default class Gameboard {
     return null;
   }
 
-
+  extractElements(list) {
+    let result = [];
+  
+    function extract(list) {
+      list.forEach(item => {
+        if (Array.isArray(item)) {
+          extract(item); 
+        } else {
+          result.push(item);  
+        }
+      });
+    }
+  
+    extract(list);
+    return result;
+  }
 }
