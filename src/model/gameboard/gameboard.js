@@ -73,7 +73,7 @@ export default class Gameboard {
     let queue = new Queue();
     let visited = new Set();
 
-    queue.enqueue([startVertex, [startVertex.values]]);
+    queue.enqueue([startVertex, [startVertex.coordinates]]);
     visited.add(startVertex);
     while (queue.queue.length !== 0) {
       const [vertex, path] = queue.dequeue();
@@ -81,15 +81,16 @@ export default class Gameboard {
       if (!visited.has(vertex)) {
         visited.add(vertex);
       }
-      // legal moves do not exist anymore
-      vertex.legalMoves.forEach((move) => {
+      vertex.connections.forEach((move) => {
         if (!visited.has(move)) {
           visited.add(move);
-          let newPath = path.concat(move.values);
+          let newPath = path.concat(move.coordinates);
           queue.enqueue([move, [newPath]]);
         }
       });
     }
     return null;
   }
+
+
 }
