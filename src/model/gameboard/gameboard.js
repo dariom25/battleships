@@ -5,7 +5,7 @@ import Vertex from "./vertex";
 export default class Gameboard {
   constructor() {
     this.vertices = {};
-    this.battleshipts = [];
+    this.battleships = [];
     this.createGameboard();
   }
 
@@ -60,8 +60,9 @@ export default class Gameboard {
   }
 
   placeBattleship(startCoordinate, endCoordinate) {
-    // check if the coordinates are legal --> add eventlistener to each cell
+    // check if the coordinates are legal (and add eventlistener to each cell)
     // check if ship exists already
+    // check if coordinates are already used
 
     const startVertex = this.findVertex(startCoordinate);
     const endVertex = this.findVertex(endCoordinate);
@@ -77,7 +78,13 @@ export default class Gameboard {
     visited.add(startVertex);
     while (queue.queue.length !== 0) {
       const [vertex, path] = queue.dequeue();
-      if (vertex === endVertex) return path;
+      if (vertex === endVertex) {
+        const extractedCoordinates = this.extractElements(path);
+        // check here if the number of legal ships is reached
+        const battleship = new Battleship(extractedCoordinates.length);
+        this.processCoordinates(extractedCoordinates, battleship);
+        this.battleships.push(battleship);
+      }
       if (!visited.has(vertex)) {
         visited.add(vertex);
       }
@@ -115,9 +122,9 @@ export default class Gameboard {
       element = element.map(function (str) {
         return parseInt(str);
       });
-      const vertex = this.findVertex(element)
-      vertex.hasShip = true
-      battleship.coordinates.push(vertex)
+      const vertex = this.findVertex(element);
+      vertex.hasShip = true;
+      battleship.coordinates.push(vertex);
     });
   }
 }
