@@ -127,4 +127,21 @@ export default class Gameboard {
       battleship.coordinates.push(vertex);
     });
   }
+
+  receiveAttack(coordinates) {
+    //check if coodinates are formatted correctly
+
+    const vertex = this.findVertex(coordinates)
+    if (vertex.isHit === true) return null
+    if (vertex.hasShip === true) {
+      this.battleships.forEach(battleship => {
+        battleship.coordinates.forEach(coordinate => {
+          if (coordinate === vertex) {
+            battleship.hit()
+            if (battleship.isSunk()) battleship.sunk = true
+          }
+        })
+      })
+    }
+  }
 }
