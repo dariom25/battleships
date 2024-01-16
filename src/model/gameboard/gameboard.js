@@ -140,6 +140,8 @@ export default class Gameboard {
             vertex.isHit = true;
             battleship.hit();
             if (battleship.isSunk()) battleship.sunk = true;
+            // check if the game is over but what then?
+            this.isGameOver(this.battleships)
           }
         });
       });
