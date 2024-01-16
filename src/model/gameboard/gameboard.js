@@ -131,18 +131,18 @@ export default class Gameboard {
   receiveAttack(coordinates) {
     //check if coodinates are formatted correctly
 
-    const vertex = this.findVertex(coordinates)
-    if (vertex.isHit === true) return null
+    const vertex = this.findVertex(coordinates);
+    if (vertex.isHit === true) return null;
     if (vertex.hasShip === true) {
-      this.battleships.forEach(battleship => {
-        battleship.coordinates.forEach(coordinate => {
+      this.battleships.forEach((battleship) => {
+        battleship.coordinates.forEach((coordinate) => {
           if (coordinate === vertex) {
-            vertex.isHit = true
-            battleship.hit()
-            if (battleship.isSunk()) battleship.sunk = true
+            vertex.isHit = true;
+            battleship.hit();
+            if (battleship.isSunk()) battleship.sunk = true;
           }
-        })
-      })
+        });
+      });
     }
   }
 }
