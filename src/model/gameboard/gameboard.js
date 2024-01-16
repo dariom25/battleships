@@ -145,4 +145,8 @@ export default class Gameboard {
       });
     }
   }
+
+  isGameOver(battleships) {
+    return battleships.every(battleship => battleship.sunk);
+  }
 }
