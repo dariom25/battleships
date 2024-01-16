@@ -6,7 +6,7 @@ export default class Gameboard {
   constructor() {
     this.vertices = {};
     this.battleshipts = [];
-    this.createGameboard()
+    this.createGameboard();
   }
 
   arrayToKey(array) {
@@ -94,18 +94,30 @@ export default class Gameboard {
 
   extractElements(list) {
     let result = [];
-  
+
     function extract(list) {
-      list.forEach(item => {
+      list.forEach((item) => {
         if (Array.isArray(item)) {
-          extract(item); 
+          extract(item);
         } else {
-          result.push(item);  
+          result.push(item);
         }
       });
     }
-  
+
     extract(list);
     return result;
+  }
+
+  processCoordinates(list, battleship) {
+    list.forEach((element) => {
+      element = element.split(",");
+      element = element.map(function (str) {
+        return parseInt(str);
+      });
+      const vertex = this.findVertex(element)
+      vertex.hasShip = true
+      battleship.coordinates.push(vertex)
+    });
   }
 }
