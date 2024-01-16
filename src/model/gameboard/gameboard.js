@@ -137,6 +137,7 @@ export default class Gameboard {
       this.battleships.forEach(battleship => {
         battleship.coordinates.forEach(coordinate => {
           if (coordinate === vertex) {
+            vertex.isHit = true
             battleship.hit()
             if (battleship.isSunk()) battleship.sunk = true
           }
