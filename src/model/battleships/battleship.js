@@ -3,8 +3,8 @@ export default class Battleship {
   constructor(length) {
     this.length = length;
     this.hits = 0;
-    this.sunk = false
-    this.coordinates = []
+    this.sunk = false;
+    this.coordinates = [];
   }
 
   hit() {
@@ -13,8 +13,8 @@ export default class Battleship {
 
   isSunk() {
     if (this.length === this.hits) {
-        return true;
+      return true;
     }
     return false;
   }
-};
+}

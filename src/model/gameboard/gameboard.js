@@ -7,7 +7,7 @@ export default class Gameboard {
     this.vertices = {};
     this.battleships = [];
     this.createGameboard();
-    this.gameOver = false
+    this.gameOver = false;
   }
 
   arrayToKey(array) {
@@ -142,7 +142,7 @@ export default class Gameboard {
             battleship.hit();
             if (battleship.isSunk()) battleship.sunk = true;
             // check if the game is over but what then?
-            this.isGameOver(this.battleships)
+            this.isGameOver(this.battleships);
           }
         });
       });
@@ -150,6 +150,6 @@ export default class Gameboard {
   }
 
   isGameOver(battleships) {
-    return battleships.every(battleship => battleship.sunk);
+    return battleships.every((battleship) => battleship.sunk);
   }
 }

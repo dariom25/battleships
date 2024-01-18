@@ -13,7 +13,7 @@ export default class Player {
       input.push(randomInt);
     }
     if (this.containsSubarray(this.shots, input)) {
-      this.computerInput()
+      this.computerInput();
     } else {
       this.shots.push(input);
       return input;
