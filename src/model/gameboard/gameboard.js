@@ -8,6 +8,7 @@ export default class Gameboard {
     this.battleships = [];
     this.createGameboard();
     this.gameOver = false;
+    this.turn = 0
   }
 
   arrayToKey(array) {
