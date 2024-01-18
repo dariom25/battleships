@@ -1,6 +1,8 @@
 export default class Player{
     
-    makeMove(coordinates) {
+    playerInput(coordinates) {
         return coordinates
     }
+
+
 }
