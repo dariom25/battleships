@@ -7,6 +7,7 @@ export default class Gameboard {
     this.vertices = {};
     this.battleships = [];
     this.createGameboard();
+    this.gameOver = false
   }
 
   arrayToKey(array) {
