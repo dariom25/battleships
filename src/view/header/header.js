@@ -1,7 +1,7 @@
 export default class Header {
   constructor() {
     this.createHeader();
-    this.createTitle("Battleships")
+    this.createTitle("Battleships");
   }
 
   createHeader() {
@@ -12,10 +12,10 @@ export default class Header {
   }
 
   createTitle(titleText) {
-    const header = document.querySelector(".header")
-    const title = document.createElement(".div")
-    title.textContent = `${titleText}`
-    title.classList.add("title")
-    header.appendChild(title)
+    const header = document.querySelector(".header");
+    const title = document.createElement("div");
+    title.textContent = `${titleText}`;
+    title.classList.add("title");
+    header.appendChild(title);
   }
 }
