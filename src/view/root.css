@@ -4,7 +4,7 @@
     --green: #2A9134;
     --black: #0D1821;
     --white: #F0F4EF;
-
+    box-sizing: border-box;
 }
 
 body{
