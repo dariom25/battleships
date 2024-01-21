@@ -3,3 +3,9 @@
     height: 5rem;
     width: 100%;
 }
+
+.title{
+    color: var(--white);
+    font-size: 4rem;
+    margin-left: 4%;
+}
