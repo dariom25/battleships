@@ -9,11 +9,19 @@
 
 body{
     background-color: var(--white);
-    margin: 0% 32%;
+    margin: 0%;
+}
+
+.content{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
 }
 
 .main-content{
     display: flex;
     justify-content: space-around;
     gap: 1rem;
+    margin: 0% 16%;
+
 }
