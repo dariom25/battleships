@@ -1,4 +1,12 @@
 .grid-container{
     display: grid;
     grid-template-columns: repeat(10, 1fr);
+    gap: 1rem;
+    background-color: gray;
+}
+
+.cell{
+    width: 1rem;
+    height: 1rem;
+    background-color: white;
 }
