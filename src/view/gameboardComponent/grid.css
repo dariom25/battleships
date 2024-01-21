@@ -1,13 +1,13 @@
 .grid-container{
     display: grid;
     grid-template-columns: repeat(10, 1fr);
-    background-color: gray;
+    background-color: var(--black);
     gap: 1px;
-    border: 0.1rem solid gray;
+    border: 0.1rem solid var(--black);
 }
 
 .cell{
     width: 2.5rem;
     height: 2.5rem;
-    background-color: white;
+    background-color: var(--white);
 }
