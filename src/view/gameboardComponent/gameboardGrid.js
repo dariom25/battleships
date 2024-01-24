@@ -1,8 +1,8 @@
 export default class GameboardGrid {
   constructor(gridTitle) {
-    this.createGrid();
     this.createGameboardContainer();
     this.addTitle(gridTitle);
+    this.createGrid();
   }
 
   createGameboardContainer() {
@@ -13,7 +13,7 @@ export default class GameboardGrid {
   }
 
   createGrid() {
-    const mainContent = document.querySelector(".main-content");
+    const gameboardContainer = document.querySelector(".gameboard-container");
     const gridContainer = document.createElement("div");
     gridContainer.classList.add("grid-container");
 
@@ -24,13 +24,14 @@ export default class GameboardGrid {
         gridContainer.appendChild(cell);
       }
     }
-    mainContent.appendChild(gridContainer);
+    gameboardContainer.appendChild(gridContainer);
   }
 
   addTitle(gridTitle) {
     const gameboardContainer = document.querySelector(".gameboard-container");
     const title = document.createElement("div");
-    title.textContent = `${gridTitle}`;
+    title.textContent = `${gridTitle}:`;
+    title.classList.add("role-title");
     gameboardContainer.appendChild(title);
   }
 }
