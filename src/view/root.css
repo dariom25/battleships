@@ -24,5 +24,23 @@ body{
 
 .field-container{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+}
+
+.button{
+    color: var(--black);
+    background-color: var(--white);
+    border: 1px solid var(--black);
+    border-radius: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.button:hover, .button:focus{
+    color: var(--white);
+    background-color: var(--black);
+}
+
+.button:active{
+    background-color: #0d182188;
 }
