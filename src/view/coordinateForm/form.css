@@ -1,0 +1,22 @@
+form{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+}
+
+form>div{
+    display: flex;
+    flex-direction: column;
+}
+
+#ship-start, #ship-end, .submit-button{
+    max-width: 15rem;
+    min-width: 5rem;
+    box-sizing: border-box;
+
+}
+
+.submit-button{
+    padding: 2px;
+}
