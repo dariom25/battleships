@@ -19,9 +19,10 @@ body{
 }
 
 .main-content{
+    margin: 0% 16%;
+}
+
+.field-container{
     display: flex;
     justify-content: space-around;
-    gap: 1rem;
-    margin: 0% 16%;
-
 }

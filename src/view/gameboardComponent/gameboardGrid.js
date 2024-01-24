@@ -9,7 +9,7 @@ export default class GameboardGrid {
     const gameboardContainer = document.createElement("div");
     gameboardContainer.classList.add("gameboard-container");
     gameboardContainer.classList.add(`${gridTitle}`);
-    const mainContent = document.querySelector(".main-content");
+    const mainContent = document.querySelector(".main-content>div");
     mainContent.appendChild(gameboardContainer);
   }
 
