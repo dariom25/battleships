@@ -11,3 +11,10 @@
     height: 2.5rem;
     background-color: var(--white);
 }
+
+.role-title{
+    font-size: 2rem;
+    color: var(--black);
+    margin: 0.5rem 0rem;
+    text-decoration: underline;
+}
