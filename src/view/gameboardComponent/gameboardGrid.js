@@ -1,19 +1,20 @@
 export default class GameboardGrid {
   constructor(gridTitle) {
-    this.createGameboardContainer();
+    this.createGameboardContainer(gridTitle);
     this.addTitle(gridTitle);
-    this.createGrid();
+    this.createGrid(gridTitle);
   }
 
-  createGameboardContainer() {
+  createGameboardContainer(gridTitle) {
     const gameboardContainer = document.createElement("div");
     gameboardContainer.classList.add("gameboard-container");
+    gameboardContainer.classList.add(`${gridTitle}`);
     const mainContent = document.querySelector(".main-content");
     mainContent.appendChild(gameboardContainer);
   }
 
-  createGrid() {
-    const gameboardContainer = document.querySelector(".gameboard-container");
+  createGrid(gridTitle) {
+    const gameboardContainer = document.querySelector(`.gameboard-container.${gridTitle}`);
     const gridContainer = document.createElement("div");
     gridContainer.classList.add("grid-container");
 
@@ -28,7 +29,7 @@ export default class GameboardGrid {
   }
 
   addTitle(gridTitle) {
-    const gameboardContainer = document.querySelector(".gameboard-container");
+    const gameboardContainer = document.querySelector(`.gameboard-container.${gridTitle}`);
     const title = document.createElement("div");
     title.textContent = `${gridTitle}:`;
     title.classList.add("role-title");
