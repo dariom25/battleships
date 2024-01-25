@@ -1,15 +1,48 @@
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(10, 1fr);
-  background-color: var(--black);
-  gap: 1px;
-  border: 0.1rem solid var(--black);
+  gap: 0.1rem;
+}
+
+.grid-header-row, .row-container {
+  display: grid;
+  grid-template-columns: auto repeat(10, 1fr);
+
+}
+
+.grid-header-row{
+  justify-content: center;
+}
+
+.row-container{
+  gap: 0.1rem
+}
+
+.corner-cell{
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.row-label, .col-label{
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+}
+
+.col-label{
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.row-label{
+  justify-content: flex-end;
+  align-items: center;
 }
 
 .cell {
   width: 2.5rem;
   height: 2.5rem;
   background-color: var(--white);
+  border: 0.1rem solid var(--black);
 }
 
 .role-title {
