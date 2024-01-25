@@ -9,10 +9,6 @@
 
 }
 
-.grid-header-row{
-  justify-content: center;
-}
-
 .row-container{
   gap: 0.1rem
 }
@@ -43,6 +39,7 @@
   height: 2.5rem;
   background-color: var(--white);
   border: 0.1rem solid var(--black);
+  cursor: pointer;
 }
 
 .role-title {
@@ -50,4 +47,6 @@
   color: var(--black);
   margin: 0.5rem 0rem;
   text-decoration: underline;
+  display: flex;
+  justify-content: center;
 }
