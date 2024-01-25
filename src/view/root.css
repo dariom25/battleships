@@ -36,11 +36,11 @@ body{
     cursor: pointer;
 }
 
-.button:hover, .button:focus{
+.button:hover{
     color: var(--white);
     background-color: var(--black);
 }
 
 .button:active{
-    background-color: #0d182188;
+    background-color: #0d1821bd;
 }
