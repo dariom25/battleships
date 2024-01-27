@@ -1,11 +1,12 @@
 .header{
     background-color: var(--black);
     height: 5rem;
-    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .title{
     color: var(--white);
     font-size: 4rem;
-    margin-left: 16%;
 }
