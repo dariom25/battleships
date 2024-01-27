@@ -2,7 +2,7 @@ form{
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-
+    align-items: center;
 }
 
 form>div{
@@ -14,9 +14,8 @@ form>div{
     max-width: 15rem;
     min-width: 5rem;
     box-sizing: border-box;
+    border-radius: 10px;
+    font-size: 1rem;
+    padding: 0.2rem;
 
-}
-
-.submit-button{
-    padding: 2px;
 }
