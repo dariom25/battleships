@@ -34,6 +34,18 @@ body{
 .settings-container{
     display: flex;
     flex-direction: column;
+    gap: 0.5rem;
+}
+
+.button-container{
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.reset-button, .random-button, .start-button{
+    width: 10rem;
 }
 
 .button{
@@ -43,6 +55,7 @@ body{
     border-radius: 10px;
     font-size: 1rem;
     cursor: pointer;
+    padding: 0.2rem;
 }
 
 .button:hover{
