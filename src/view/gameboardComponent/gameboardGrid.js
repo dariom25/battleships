@@ -17,6 +17,7 @@ export default class GameboardGrid {
     const gameboardContainer = document.querySelector(`.gameboard-container.${gridTitle}`);
     const gridContainer = document.createElement("div");
     gridContainer.classList.add("grid-container");
+    gridContainer.classList.add(`${gridTitle}`);
   
     // Create header row for column labels
     const headerRow = document.createElement("div");
