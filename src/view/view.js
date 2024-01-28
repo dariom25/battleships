@@ -29,4 +29,8 @@ export default class View {
       }
     });
   }
+
+  getUserInput(element) {
+    return element.value;
+  }
 }
