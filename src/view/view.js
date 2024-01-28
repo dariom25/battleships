@@ -1,8 +1,9 @@
 import GameboardGrid from "./gameboardComponent/gameboardGrid";
 import Header from "./header/header";
-import "./view/coordinateForm/form.css"
-import "./view/root.css";
-import "./view/gameboardComponent/grid.css";
+import "./coordinateForm/form.css"
+import "./root.css";
+import "./gameboardComponent/grid.css"
+import "./header/header.css"
 
 
 
