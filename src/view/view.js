@@ -1,11 +1,9 @@
 import GameboardGrid from "./gameboardComponent/gameboardGrid";
 import Header from "./header/header";
-import "./coordinateForm/form.css"
+import "./coordinateForm/form.css";
 import "./root.css";
-import "./gameboardComponent/grid.css"
-import "./header/header.css"
-
-
+import "./gameboardComponent/grid.css";
+import "./header/header.css";
 
 export default class View {
   constructor() {
@@ -13,8 +11,6 @@ export default class View {
     this.playerGrid = new GameboardGrid("Player");
     this.computerGrid = new GameboardGrid("Computer");
     this.cacheElements();
-    this.bindShootCell();
-    this.bindSubmitCoordinates();
   }
 
   cacheElements() {
@@ -42,9 +38,9 @@ export default class View {
   }
 
   bindSubmitCoordinates(handler) {
-    this.submitButton.addEventListener("click", event => {
+    this.submitButton.addEventListener("click", (event) => {
       event.preventDefault();
       handler();
-    })
+    });
   }
 }
