@@ -6,6 +6,10 @@ export default class Controller {
 
   bindEvents() {
     this.view.bindShootCell();
-    this.view.bindSubmitCoordinates();
+    this.view.bindSubmitCoordinates(this.handleSubmitCoordinates());
+  }
+
+  handleSubmitCoordinates() {
+
   }
 }
