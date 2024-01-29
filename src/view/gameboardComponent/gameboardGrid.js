@@ -50,6 +50,7 @@ export default class GameboardGrid {
       for (let col = 1; col < 11; col++) {
         const cell = document.createElement("div");
         cell.classList.add("cell");
+        cell.classList.add(`${row},${col}`)
         rowContainer.appendChild(cell);
       }
   
