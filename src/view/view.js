@@ -48,14 +48,14 @@ export default class View {
       //calculate the horizontal ship length
       //check if start coordinates are smaller than end coordinates and calculate accordingly
       if (startCoordinates[0] < endCoordinates[0]) {
-        for (let row = startCoordinates[0]; row <= endCoordinates[0]; row++) {
-          const cell = this.findCell([row, endCoordinates[1]]);
+        for (let col = startCoordinates[0]; col <= endCoordinates[0]; col++) {
+          const cell = this.findCell([col, endCoordinates[1]]);
           shipCoordinates.push(cell);
         }
       //check if start coordinates are bigger than end coordinates and calculate accordingly
       } else if (startCoordinates[0] > endCoordinates[0]) {
-        for (let row = endCoordinates[0]; row <= startCoordinates[0]; row++) {
-          const cell = this.findCell([row, startCoordinates[1]]);
+        for (let col = endCoordinates[0]; col <= startCoordinates[0]; col++) {
+          const cell = this.findCell([col, startCoordinates[1]]);
           shipCoordinates.push(cell);
         }
       } else {
@@ -65,14 +65,14 @@ export default class View {
       //calculate the vertical ship length
       //check if start coordinates are smaller than end coordinates and calculate accordingly
       if (startCoordinates[1] < endCoordinates[1]) {
-        for (let col = startCoordinates[1]; col <= endCoordinates[1]; col++) {
-          const cell = this.findCell([col, endCoordinates[0]]);
+        for (let row = startCoordinates[1]; row <= endCoordinates[1]; row++) {
+          const cell = this.findCell([endCoordinates[0], row]);
           shipCoordinates.push(cell);
         }
       //check if start coordinates are bigger than end coordinates and calculate accordingly
       } else if (startCoordinates[1] > endCoordinates[1]) {
-        for (let col = endCoordinates[1]; col <= startCoordinates[1]; col++) {
-          const cell = this.findCell([startCoordinates[0], col]);
+        for (let row = endCoordinates[1]; row <= startCoordinates[1]; row++) {
+          const cell = this.findCell([startCoordinates[0], row]);
           shipCoordinates.push(cell);
         }
       } else {
