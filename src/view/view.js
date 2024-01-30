@@ -85,6 +85,11 @@ export default class View {
     return shipCoordinates;
   }
 
+  emptyInputs() {
+    const startCoordinates = document.querySelector("#ship-start").value = "";
+    const endCoordinates = document.querySelector("#ship-end").value = "";
+  }
+
   findCell(coordinates) {
     coordinates = this.arrayToKey(coordinates);
     const cell = document
