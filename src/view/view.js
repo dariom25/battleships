@@ -28,37 +28,42 @@ export default class View {
     const startCoordinates = document.querySelector("#ship-start").value;
     const endCoordinates = document.querySelector("#ship-end").value;
 
-    //find start and end cells
-    const startCell = document
-      .getElementsByClassName(`cell ${startCoordinates} Player`)
-      .item(0);
-    const endCell = document
-      .getElementsByClassName(`cell ${endCoordinates} Player`)
-      .item(0);
-
-    this.validateAndCalculateShipPlacement(startCoordinates, endCoordinates);
+    const shipCoordinates = this.validateAndCalculateShipPlacement(
+      startCoordinates,
+      endCoordinates,
+    );
+    shipCoordinates.forEach((coordinate) => {
+      coordinate.classList.add("ship");
+    });
   }
 
   validateAndCalculateShipPlacement(coordinate1, coordinate2) {
     //process coordinates
     const startCoordinates = this.parseCoordinatesToArray(coordinate1);
     const endCoordinates = this.parseCoordinatesToArray(coordinate2);
-
+    const shipCoordinates = [];
     //validate the legality of the coordinates
     if (startCoordinates[1] === endCoordinates[1]) {
       //calculate the horizontal ship length
-      
+      for (let row = startCoordinates[0]; row <= endCoordinates[0]; row++) {
+        const cell = this.findCell([row, endCoordinates[1]]);
+        shipCoordinates.push(cell);
+      }
     } else if (startCoordinates[0] === endCoordinates[0]) {
       //calculate the vertical ship length
     } else {
       // error message because illegal ship
     }
+
+    return shipCoordinates;
   }
 
   findCell(coordinates) {
-    coordinates = this.arrayToKey(coordinates)
-    const cell = document.getElementsByClassName(`cell ${coordinates} Player`).item(0)
-    return cell
+    coordinates = this.arrayToKey(coordinates);
+    const cell = document
+      .getElementsByClassName(`cell ${coordinates} Player`)
+      .item(0);
+    return cell;
   }
 
   arrayToKey(array) {
