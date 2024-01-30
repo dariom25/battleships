@@ -29,19 +29,22 @@ export default class View {
     const endCoordinates = document.querySelector("#ship-end").value;
 
     //find start and end cells
-    const startCell = document.getElementsByClassName(`cell ${startCoordinates}`);
-    const endCell = document.getElementsByClassName(`cell ${endCoordinates}`);
+    const startCell = document.getElementsByClassName(`cell ${startCoordinates} Player`).item(0);
+    const endCell = document.getElementsByClassName(`cell ${endCoordinates} Player`).item(0);
 
+    
   }
 
-  bindShootCell(handler) {
+ 
+
+  bindShootCell = (handler) => {
     this.gridContainerComputer.addEventListener("click", (event) => {
       const clickedCell = event.target;
       handler(clickedCell);
     });
   }
 
-  bindSubmitCoordinates(handler) {
+  bindSubmitCoordinates = (handler) => {
     this.submitButton.addEventListener("click", (event) => {
       event.preventDefault();
       handler();
