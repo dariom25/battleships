@@ -29,7 +29,7 @@ export default class View {
     const startCoordinates = document.querySelector("#ship-start").value;
     const endCoordinates = document.querySelector("#ship-end").value;
 
-    return [startCoordinates, endCoordinates]
+    return [startCoordinates, endCoordinates];
   }
 
   displayShip(shipCoordinates) {
@@ -46,12 +46,38 @@ export default class View {
     //validate the legality of the coordinates
     if (startCoordinates[1] === endCoordinates[1]) {
       //calculate the horizontal ship length
-      for (let row = startCoordinates[0]; row <= endCoordinates[0]; row++) {
-        const cell = this.findCell([row, endCoordinates[1]]);
-        shipCoordinates.push(cell);
+      //check if start coordinates are smaller than end coordinates and calculate accordingly
+      if (startCoordinates[0] < endCoordinates[0]) {
+        for (let row = startCoordinates[0]; row <= endCoordinates[0]; row++) {
+          const cell = this.findCell([row, endCoordinates[1]]);
+          shipCoordinates.push(cell);
+        }
+      //check if start coordinates are bigger than end coordinates and calculate accordingly
+      } else if (startCoordinates[0] > endCoordinates[0]) {
+        for (let row = endCoordinates[0]; row <= startCoordinates[0]; row++) {
+          const cell = this.findCell([row, startCoordinates[1]]);
+          shipCoordinates.push(cell);
+        }
+      } else {
+        // error message because illegal ship
       }
     } else if (startCoordinates[0] === endCoordinates[0]) {
       //calculate the vertical ship length
+      //check if start coordinates are smaller than end coordinates and calculate accordingly
+      if (startCoordinates[1] < endCoordinates[1]) {
+        for (let col = startCoordinates[1]; col <= endCoordinates[1]; col++) {
+          const cell = this.findCell([col, endCoordinates[0]]);
+          shipCoordinates.push(cell);
+        }
+      //check if start coordinates are bigger than end coordinates and calculate accordingly
+      } else if (startCoordinates[1] > endCoordinates[1]) {
+        for (let col = endCoordinates[1]; col <= startCoordinates[1]; col++) {
+          const cell = this.findCell([startCoordinates[0], col]);
+          shipCoordinates.push(cell);
+        }
+      } else {
+        // error message because illegal ship
+      }
     } else {
       // error message because illegal ship
     }
