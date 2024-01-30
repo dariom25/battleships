@@ -25,13 +25,11 @@ export default class View {
   }
 
   submitCoordinates() {
+    //get coordinates
     const startCoordinates = document.querySelector("#ship-start").value;
     const endCoordinates = document.querySelector("#ship-end").value;
 
-    const shipCoordinates = this.validateAndCalculateShipPlacement(
-      startCoordinates,
-      endCoordinates,
-    );
+    return [startCoordinates, endCoordinates]
   }
 
   displayShip(shipCoordinates) {
