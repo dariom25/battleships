@@ -24,16 +24,20 @@ export default class View {
     );
   }
 
-  getUserInput(element) {
-    return element.value;
+  submitCoordinates() {
+    const startCoordinates = document.querySelector("#ship-start").value;
+    const endCoordinates = document.querySelector("#ship-end").value;
+
+    //find start and end cells
+    const startCell = document.getElementsByClassName(`cell ${startCoordinates}`);
+    const endCell = document.getElementsByClassName(`cell ${endCoordinates}`);
+
   }
 
-  bindShootCell() {
+  bindShootCell(handler) {
     this.gridContainerComputer.addEventListener("click", (event) => {
       const clickedCell = event.target;
-      if (clickedCell.classList.contains("cell")) {
-        clickedCell.classList.add("shot");
-      }
+      handler(clickedCell);
     });
   }
 
