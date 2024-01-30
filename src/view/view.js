@@ -42,47 +42,25 @@ export default class View {
     //process coordinates
     const startCoordinates = this.parseCoordinatesToArray(coordinate1);
     const endCoordinates = this.parseCoordinatesToArray(coordinate2);
-    const shipCoordinates = [];
     //validate the legality of the coordinates
     if (startCoordinates[1] === endCoordinates[1]) {
-      //calculate the horizontal ship length
-      //check if start coordinates are smaller than end coordinates and calculate accordingly
-      if (startCoordinates[0] < endCoordinates[0]) {
-        for (let col = startCoordinates[0]; col <= endCoordinates[0]; col++) {
-          const cell = this.findCell([col, endCoordinates[1]]);
-          shipCoordinates.push(cell);
-        }
-        //check if start coordinates are bigger than end coordinates and calculate accordingly
-      } else if (startCoordinates[0] > endCoordinates[0]) {
-        for (let col = endCoordinates[0]; col <= startCoordinates[0]; col++) {
-          const cell = this.findCell([col, startCoordinates[1]]);
-          shipCoordinates.push(cell);
-        }
-      } else {
-        // error message because illegal ship
-      }
+      return this.calculateCoordinatesDependingOnDirection(
+        startCoordinates[0],
+        endCoordinates[0],
+        startCoordinates[1],
+        true,
+      );
     } else if (startCoordinates[0] === endCoordinates[0]) {
-      //calculate the vertical ship length
-      //check if start coordinates are smaller than end coordinates and calculate accordingly
-      if (startCoordinates[1] < endCoordinates[1]) {
-        for (let row = startCoordinates[1]; row <= endCoordinates[1]; row++) {
-          const cell = this.findCell([endCoordinates[0], row]);
-          shipCoordinates.push(cell);
-        }
-        //check if start coordinates are bigger than end coordinates and calculate accordingly
-      } else if (startCoordinates[1] > endCoordinates[1]) {
-        for (let row = endCoordinates[1]; row <= startCoordinates[1]; row++) {
-          const cell = this.findCell([startCoordinates[0], row]);
-          shipCoordinates.push(cell);
-        }
-      } else {
-        // error message because illegal ship
-      }
+      return this.calculateCoordinatesDependingOnDirection(
+        startCoordinates[1],
+        endCoordinates[1],
+        startCoordinates[0],
+        false,
+      );
     } else {
       // error message because illegal ship
     }
 
-    return shipCoordinates;
   }
 
   calculateCoordinatesDependingOnDirection(
