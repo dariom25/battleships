@@ -51,6 +51,6 @@
   justify-content: center;
 }
 
-.shot{
-  background-color: var(--red);
+.ship{
+  background-color: var(--green);
 }
