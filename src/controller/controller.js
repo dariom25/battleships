@@ -12,7 +12,11 @@ export default class Controller {
 
   handleSubmitCoordinates = () => {
     const startAndEndcoordinates = this.view.submitCoordinates();
-    const ship = this.view.validateAndCalculateShipPlacement(startAndEndcoordinates[0], startAndEndcoordinates[1])
-    this.view.displayShip(ship)
-  }
+    const ship = this.view.validateAndCalculateShipPlacement(
+      startAndEndcoordinates[0],
+      startAndEndcoordinates[1],
+    );
+    this.view.displayShip(ship);
+    this.view.emptyInputs();
+  };
 }
