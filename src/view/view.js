@@ -32,6 +32,9 @@ export default class View {
       startCoordinates,
       endCoordinates,
     );
+  }
+
+  displayShip(shipCoordinates) {
     shipCoordinates.forEach((coordinate) => {
       coordinate.classList.add("ship");
     });
