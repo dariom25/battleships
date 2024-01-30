@@ -52,7 +52,7 @@ export default class View {
           const cell = this.findCell([col, endCoordinates[1]]);
           shipCoordinates.push(cell);
         }
-      //check if start coordinates are bigger than end coordinates and calculate accordingly
+        //check if start coordinates are bigger than end coordinates and calculate accordingly
       } else if (startCoordinates[0] > endCoordinates[0]) {
         for (let col = endCoordinates[0]; col <= startCoordinates[0]; col++) {
           const cell = this.findCell([col, startCoordinates[1]]);
@@ -69,7 +69,7 @@ export default class View {
           const cell = this.findCell([endCoordinates[0], row]);
           shipCoordinates.push(cell);
         }
-      //check if start coordinates are bigger than end coordinates and calculate accordingly
+        //check if start coordinates are bigger than end coordinates and calculate accordingly
       } else if (startCoordinates[1] > endCoordinates[1]) {
         for (let row = endCoordinates[1]; row <= startCoordinates[1]; row++) {
           const cell = this.findCell([startCoordinates[0], row]);
@@ -85,9 +85,27 @@ export default class View {
     return shipCoordinates;
   }
 
+  calculateCoordinatesDependingOnDirection(
+    start,
+    end,
+    fixedValue,
+    horizontalShip,
+  ) {
+    const shipCoordinates = [];
+    const step = start < end ? 1 : -1;
+    for (let i = start; i !== end + step; i += step) {
+      const cell = horizontalShip
+        ? this.findCell([i, fixedValue])
+        : this.findCell([fixedValue, i]);
+      shipCoordinates.push(cell);
+    }
+
+    return shipCoordinates;
+  }
+
   emptyInputs() {
-    const startCoordinates = document.querySelector("#ship-start").value = "";
-    const endCoordinates = document.querySelector("#ship-end").value = "";
+    const startCoordinates = (document.querySelector("#ship-start").value = "");
+    const endCoordinates = (document.querySelector("#ship-end").value = "");
   }
 
   findCell(coordinates) {
