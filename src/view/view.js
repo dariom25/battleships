@@ -29,25 +29,57 @@ export default class View {
     const endCoordinates = document.querySelector("#ship-end").value;
 
     //find start and end cells
-    const startCell = document.getElementsByClassName(`cell ${startCoordinates} Player`).item(0);
-    const endCell = document.getElementsByClassName(`cell ${endCoordinates} Player`).item(0);
+    const startCell = document
+      .getElementsByClassName(`cell ${startCoordinates} Player`)
+      .item(0);
+    const endCell = document
+      .getElementsByClassName(`cell ${endCoordinates} Player`)
+      .item(0);
 
-    
+    this.validateAndCalculateShipPlacement(startCoordinates, endCoordinates);
   }
 
- 
+  validateAndCalculateShipPlacement(coordinate1, coordinate2) {
+    //process coordinates
+    const startCoordinates = this.parseCoordinatesToArray(coordinate1);
+    const endCoordinates = this.parseCoordinatesToArray(coordinate2);
+
+    //validate the legality of the coordinates
+    if (startCoordinates[1] === endCoordinates[1]) {
+      //calculate the horizontal ship length
+      
+    } else if (startCoordinates[0] === endCoordinates[0]) {
+      //calculate the vertical ship length
+    } else {
+      // error message because illegal ship
+    }
+  }
+
+  findCell(coordinates) {
+    coordinates = this.arrayToKey(coordinates)
+    const cell = document.getElementsByClassName(`cell ${coordinates} Player`).item(0)
+    return cell
+  }
+
+  arrayToKey(array) {
+    return array.join(",");
+  }
+
+  parseCoordinatesToArray(coordinates) {
+    return coordinates.split(",").map((str) => parseInt(str, 10));
+  }
 
   bindShootCell = (handler) => {
     this.gridContainerComputer.addEventListener("click", (event) => {
       const clickedCell = event.target;
       handler(clickedCell);
     });
-  }
+  };
 
   bindSubmitCoordinates = (handler) => {
     this.submitButton.addEventListener("click", (event) => {
       event.preventDefault();
       handler();
     });
-  }
+  };
 }
