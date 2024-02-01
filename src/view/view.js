@@ -11,6 +11,7 @@ export default class View {
     this.playerGrid = new GameboardGrid("Player");
     this.computerGrid = new GameboardGrid("Computer");
     this.cacheElements();
+    this.ships = []
   }
 
   cacheElements() {
@@ -53,6 +54,13 @@ export default class View {
       return true;
     }
   }
+
+  doesNotExist(shipLength) {
+    // check if the ship already exists
+    this.ships.every(ship => ship.length !== shipLength.length)
+  }
+
+  // check if not a one block ship
 
   calculateShipPlacement(coordinate1, coordinate2) {
     //process coordinates
