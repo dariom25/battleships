@@ -16,8 +16,8 @@ export default class Gameboard {
   }
 
   createGameboard() {
-    for (let row = 0; row < 10; row++) {
-      for (let col = 0; col < 10; col++) {
+    for (let row = 1; row < 11; row++) {
+      for (let col = 1; col < 11; col++) {
         this.addVertex([row, col]);
       }
     }
