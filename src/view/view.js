@@ -40,40 +40,7 @@ export default class View {
     });
   }
 
-  isNotDiagonal(coordinate1, coordinate2) {
-    const startCoordinates = this.parseCoordinatesToArray(coordinate1);
-    const endCoordinates = this.parseCoordinatesToArray(coordinate2);
 
-    // checks if the ship is not diagonal
-    if (
-      (startCoordinates[0] === endCoordinates[0] &&
-        startCoordinates[1] !== endCoordinates[1]) ||
-      (startCoordinates[1] === endCoordinates[1] &&
-        startCoordinates[0] !== endCoordinates[0])
-    ) {
-      return true;
-    }
-  }
-
-  doesNotExist(shipLength) {
-    // check if the ship already exists
-    this.ships.every((ship) => ship.length !== shipLength.length);
-  }
-
-  isNotSingleCell(coordinate1, coordinate2) {
-    const startCoordinates = this.parseCoordinatesToArray(coordinate1);
-    const endCoordinates = this.parseCoordinatesToArray(coordinate2);
-
-    // checks if the ship is not a single cell
-    if (
-      !(
-        startCoordinates[0] === endCoordinates[0] &&
-        startCoordinates[1] === endCoordinates[1]
-      )
-    ) {
-      return true;
-    }
-  }
 
   calculateShipPlacement(coordinate1, coordinate2) {
     //process coordinates
