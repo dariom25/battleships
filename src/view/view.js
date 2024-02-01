@@ -39,14 +39,7 @@ export default class View {
     });
   }
 
-  validateCoordinates(coordinate1, coordinate2) {
-    //check for format
-    //check for correct lentgh (>= 3; <= 5)
-    //check for digits
-    //check for legal cells (>= 1; <= 10)
-
-    //check why form validation does not work anymore
-
+  isNotDiagonal(coordinate1, coordinate2) {
     const startCoordinates = this.parseCoordinatesToArray(coordinate1);
     const endCoordinates = this.parseCoordinatesToArray(coordinate2);
 
@@ -134,8 +127,8 @@ export default class View {
   bindSubmitCoordinates = (handler) => {
     this.submitButton.addEventListener("click", (event) => {
       if (this.coordinatesForm.checkValidity()) {
-      event.preventDefault();
-      handler();
+        event.preventDefault();
+        handler();
       }
     });
   };
