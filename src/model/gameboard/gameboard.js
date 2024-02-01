@@ -61,6 +61,39 @@ export default class Gameboard {
     return null;
   }
 
+  parseCoordinatesToArray(coordinates) {
+    return coordinates.split(",").map((str) => parseInt(str, 10));
+  }
+
+  shipDoesNotExist(shipLength) {
+    // check if the ship already exists
+    this.battleships.every((battleship) => battleship.length !== shipLength.length);
+  }
+
+  isNotSingleCellShip(coordinate1, coordinate2) {
+    const startCoordinates = this.parseCoordinatesToArray(coordinate1);
+    const endCoordinates = this.parseCoordinatesToArray(coordinate2);
+    // checks if the ship is not a single cell
+    if (
+      !startCoordinates[0] === endCoordinates[0] &&
+      startCoordinates[1] === endCoordinates[1]
+    )
+      return true;
+  }
+
+  isNotDiagonal(coordinate1, coordinate2) {
+    const startCoordinates = this.parseCoordinatesToArray(coordinate1);
+    const endCoordinates = this.parseCoordinatesToArray(coordinate2);
+    // checks if the ship is not diagonal
+    if (
+      (startCoordinates[0] === endCoordinates[0] &&
+        startCoordinates[1] !== endCoordinates[1]) ||
+      (startCoordinates[1] === endCoordinates[1] &&
+        startCoordinates[0] !== endCoordinates[0])
+    )
+      return true;
+  }
+
   placeBattleship(startCoordinate, endCoordinate) {
     // check if the coordinates are legal (and add eventlistener to each cell)
     // check if ship exists already
