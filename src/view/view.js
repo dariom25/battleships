@@ -22,6 +22,7 @@ export default class View {
     this.gridContainerComputer = document.querySelector(
       ".grid-container.Computer",
     );
+    this.coordinatesForm = document.querySelector("form");
   }
 
   submitCoordinates() {
@@ -38,11 +39,33 @@ export default class View {
     });
   }
 
-  validateAndCalculateShipPlacement(coordinate1, coordinate2) {
+  validateCoordinates(coordinate1, coordinate2) {
+    //check for format
+    //check for correct lentgh (>= 3; <= 5)
+    //check for digits
+    //check for legal cells (>= 1; <= 10)
+
+    //check why form validation does not work anymore
+
+    const startCoordinates = this.parseCoordinatesToArray(coordinate1);
+    const endCoordinates = this.parseCoordinatesToArray(coordinate2);
+
+    // checks if the ship is not diagonal
+    if (
+      (startCoordinates[0] === endCoordinates[0] &&
+        startCoordinates[1] !== endCoordinates[1]) ||
+      (startCoordinates[1] === endCoordinates[1] &&
+        startCoordinates[0] !== endCoordinates[0])
+    ) {
+      return true;
+    }
+  }
+
+  calculateShipPlacement(coordinate1, coordinate2) {
     //process coordinates
     const startCoordinates = this.parseCoordinatesToArray(coordinate1);
     const endCoordinates = this.parseCoordinatesToArray(coordinate2);
-    //validate the legality of the coordinates
+
     if (startCoordinates[1] === endCoordinates[1]) {
       return this.calculateCoordinatesDependingOnDirection(
         startCoordinates[0],
@@ -60,7 +83,6 @@ export default class View {
     } else {
       // error message because illegal ship
     }
-
   }
 
   calculateCoordinatesDependingOnDirection(
@@ -111,8 +133,10 @@ export default class View {
 
   bindSubmitCoordinates = (handler) => {
     this.submitButton.addEventListener("click", (event) => {
+      if (this.coordinatesForm.checkValidity()) {
       event.preventDefault();
       handler();
+      }
     });
   };
 }
