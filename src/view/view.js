@@ -11,7 +11,7 @@ export default class View {
     this.playerGrid = new GameboardGrid("Player");
     this.computerGrid = new GameboardGrid("Computer");
     this.cacheElements();
-    this.ships = []
+    this.ships = [];
   }
 
   cacheElements() {
@@ -57,10 +57,23 @@ export default class View {
 
   doesNotExist(shipLength) {
     // check if the ship already exists
-    this.ships.every(ship => ship.length !== shipLength.length)
+    this.ships.every((ship) => ship.length !== shipLength.length);
   }
 
-  // check if not a one block ship
+  isNotSingleCell(coordinate1, coordinate2) {
+    const startCoordinates = this.parseCoordinatesToArray(coordinate1);
+    const endCoordinates = this.parseCoordinatesToArray(coordinate2);
+
+    // checks if the ship is not a single cell
+    if (
+      !(
+        startCoordinates[0] === endCoordinates[0] &&
+        startCoordinates[1] === endCoordinates[1]
+      )
+    ) {
+      return true;
+    }
+  }
 
   calculateShipPlacement(coordinate1, coordinate2) {
     //process coordinates
