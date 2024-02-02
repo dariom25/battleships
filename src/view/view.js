@@ -34,13 +34,14 @@ export default class View {
     return [startCoordinates, endCoordinates];
   }
 
-  displayShip(shipCoordinates) {
-    shipCoordinates.forEach((coordinate) => {
-      coordinate.classList.add("ship");
+  displayShip(battleships) {
+    battleships.forEach((battleship) => {
+      battleship.coordinates.forEach((coordinate) => {
+        const cell = this.findCell(coordinate);
+        cell.classList.add("ship");
+      });
     });
   }
-
-
 
   calculateShipPlacement(coordinate1, coordinate2) {
     //process coordinates
@@ -90,7 +91,7 @@ export default class View {
   }
 
   findCell(coordinates) {
-    coordinates = this.arrayToKey(coordinates);
+    coordinates = this.arrayToKey(coordinates.coordinates);
     const cell = document
       .getElementsByClassName(`cell ${coordinates} Player`)
       .item(0);
@@ -98,6 +99,7 @@ export default class View {
   }
 
   arrayToKey(array) {
+    if (!Array.isArray(array)) throw new Error("Input is not an array");
     return array.join(",");
   }
 

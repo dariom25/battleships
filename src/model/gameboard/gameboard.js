@@ -12,6 +12,7 @@ export default class Gameboard {
   }
 
   arrayToKey(array) {
+    if (!Array.isArray(array)) throw new Error("Input is not an array");
     return array.join(",");
   }
 
@@ -45,7 +46,6 @@ export default class Gameboard {
   }
 
   addVertex(identifier) {
-    identifier = this.arrayToKey(identifier);
     if (identifier in this.vertices) {
       return;
     } else {
@@ -54,7 +54,6 @@ export default class Gameboard {
   }
 
   findVertex(identifier) {
-    identifier = this.arrayToKey(identifier);
     if (identifier in this.vertices) {
       return this.vertices[identifier];
     }
@@ -79,7 +78,10 @@ export default class Gameboard {
     const placedBattleships = [];
     this.battleships.forEach((battleship) => {
       const coordinates = battleship.coordinates;
-      placedBattleships.push(coordinates);
+      coordinates.forEach((coordinate) => {
+        const newCoordinate = coordinate.coordinates;
+        placedBattleships.push(newCoordinate);
+      });
     });
     console.log(placedBattleships);
 
@@ -114,7 +116,7 @@ export default class Gameboard {
   }
 
   placeBattleship(startCoordinate, endCoordinate) {
-    // check if the coordinates are legal (and add eventlistener to each cell)
+    // check if the coordinates are legal
     // check if ship exists already
     // check if coordinates are already used
 
@@ -138,6 +140,7 @@ export default class Gameboard {
         const battleship = new Battleship(extractedCoordinates.length);
         this.processCoordinates(extractedCoordinates, battleship);
         this.battleships.push(battleship);
+        console.log(battleship);
       }
       if (!visited.has(vertex)) {
         visited.add(vertex);
@@ -155,13 +158,18 @@ export default class Gameboard {
 
   extractElements(list) {
     let result = [];
+    let coordinates = [];
 
     function extract(list) {
       list.forEach((item) => {
         if (Array.isArray(item)) {
           extract(item);
         } else {
-          result.push(item);
+          coordinates.push(item);
+          if (coordinates.length === 2) {
+            result.push(coordinates);
+            coordinates = [];
+          }
         }
       });
     }
@@ -172,10 +180,10 @@ export default class Gameboard {
 
   processCoordinates(list, battleship) {
     list.forEach((element) => {
-      element = element.split(",");
+      /* element = element.split(",");
       element = element.map(function (str) {
         return parseInt(str);
-      });
+      }); */
       const vertex = this.findVertex(element);
       vertex.hasShip = true;
       battleship.coordinates.push(vertex);
