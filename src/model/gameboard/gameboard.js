@@ -8,7 +8,7 @@ export default class Gameboard {
     this.battleships = [];
     this.createGameboard();
     this.gameOver = false;
-    this.turn = 0
+    this.turn = 0;
   }
 
   arrayToKey(array) {
@@ -67,7 +67,26 @@ export default class Gameboard {
 
   shipDoesNotExist(shipLength) {
     // check if the ship already exists
-    this.battleships.every((battleship) => battleship.length !== shipLength.length);
+    this.battleships.every(
+      (battleship) => battleship.length !== shipLength.length,
+    );
+  }
+
+  shipsDoNotIntersect(shipCoordinates) {
+    //shipCoordinates is an array
+
+    //extract coordinates from battleships
+    const placedBattleships = [];
+    this.battleships.forEach((battleship) => {
+      const coordinates = battleship.coordinates;
+      placedBattleships.push(coordinates);
+    });
+    console.log(placedBattleships);
+
+    // check if ships intersect
+    shipCoordinates.forEach((coordinate) => {
+      placedBattleships.every((battleship) => battleship !== coordinate);
+    });
   }
 
   isNotSingleCellShip(coordinate1, coordinate2) {
