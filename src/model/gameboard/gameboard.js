@@ -35,7 +35,7 @@ export default class Gameboard {
       legalConnections.forEach((connection) => {
         const newRow = parseInt(row) + connection[0];
         const newCol = parseInt(col) + connection[1];
-        if (newRow <= 9 && newRow >= 0 && newCol <= 9 && newCol >= 0) {
+        if (newRow <= 10 && newRow >= 0 && newCol <= 10 && newCol >= 0) {
           const targetVertex = this.findVertex([newRow, newCol]);
           if (targetVertex !== null) {
             vertex.addConnection(targetVertex);
