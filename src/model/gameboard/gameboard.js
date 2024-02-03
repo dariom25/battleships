@@ -72,7 +72,7 @@ export default class Gameboard {
   }
 
   shipsDoNotIntersect(shipCoordinates) {
-    //shipCoordinates is an array
+    //shipCoordinates is an array which contains the coordinates as arrays
 
     //extract coordinates from battleships
     const placedBattleships = [];
@@ -83,23 +83,16 @@ export default class Gameboard {
         placedBattleships.push(newCoordinate);
       });
     });
-    console.log(placedBattleships);
 
     // check if ships intersect
-    shipCoordinates.forEach((coordinate) => {
-      placedBattleships.every((battleship) => battleship !== coordinate);
-    });
-  }
-
-  isNotSingleCellShip(coordinate1, coordinate2) {
-    const startCoordinates = this.parseCoordinatesToArray(coordinate1);
-    const endCoordinates = this.parseCoordinatesToArray(coordinate2);
-    // checks if the ship is not a single cell
-    if (
-      !startCoordinates[0] === endCoordinates[0] &&
-      startCoordinates[1] === endCoordinates[1]
-    )
-      return true;
+    if (this.battleships.length === 0) return true;
+    return shipCoordinates.every(
+      (coordinate) =>
+        !placedBattleships.some(
+          (battleship) =>
+            JSON.stringify(battleship) === JSON.stringify(coordinate),
+        ),
+    );
   }
 
   isNotDiagonal(coordinate1, coordinate2) {
@@ -120,6 +113,10 @@ export default class Gameboard {
     // check if ship exists already
     // check if coordinates are already used
 
+    if (!this.isNotDiagonal(startCoordinate, endCoordinate))
+      throw new Error("Diagonal ships are invalid");
+    // empty inputs
+
     const startVertex = this.findVertex(startCoordinate);
     const endVertex = this.findVertex(endCoordinate);
 
@@ -137,10 +134,12 @@ export default class Gameboard {
       if (vertex === endVertex) {
         const extractedCoordinates = this.extractElements(path);
         // check here if the number of legal ships is reached
+        if (!this.shipsDoNotIntersect(extractedCoordinates))
+          throw new Error("Ship intersects with other ship");
+
         const battleship = new Battleship(extractedCoordinates.length);
         this.processCoordinates(extractedCoordinates, battleship);
         this.battleships.push(battleship);
-        console.log(battleship);
       }
       if (!visited.has(vertex)) {
         visited.add(vertex);
