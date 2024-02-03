@@ -62,8 +62,6 @@ export default class View {
         startCoordinates[0],
         false,
       );
-    } else {
-      // error message because illegal ship
     }
   }
 
