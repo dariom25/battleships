@@ -9,6 +9,7 @@ export default class Gameboard {
     this.createGameboard();
     this.gameOver = false;
     this.turn = 0;
+    this.legalShips = [5, 4, 3, 2, 2];
   }
 
   arrayToKey(array) {
@@ -64,11 +65,18 @@ export default class Gameboard {
     return coordinates.split(",").map((str) => parseInt(str, 10));
   }
 
-  shipDoesNotExist(shipLength) {
+  shipIsLegal(shipLength) {
     // check if the ship already exists
-    this.battleships.every(
-      (battleship) => battleship.length !== shipLength.length,
-    );
+    let legal = false;
+    this.legalShips.forEach((ship) => {
+      if (ship === shipLength) {
+        const index = this.legalShips.indexOf(ship);
+        this.legalShips.splice(index, 1);
+        console.log(this.legalShips);
+        legal = true;
+      }
+    });
+    return legal
   }
 
   shipsDoNotIntersect(shipCoordinates) {
@@ -134,6 +142,11 @@ export default class Gameboard {
       if (vertex === endVertex) {
         const extractedCoordinates = this.extractElements(path);
         // check here if the number of legal ships is reached
+        if (!this.shipIsLegal(extractedCoordinates.length))
+          throw new Error(
+            "Ship is too long or the maximum number of this ship is reached",
+          );
+
         if (!this.shipsDoNotIntersect(extractedCoordinates))
           throw new Error("Ship intersects with other ship");
 
