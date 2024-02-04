@@ -14,10 +14,9 @@ export default class Controller {
     this.view.bindSubmitCoordinates(this.handleSubmitCoordinates);
   }
 
-  generateRandomComputersShip() {
+  generateRandomComputersShips() {
     for (let i = 0; i < 5; i++) {
       this.computerModel.placeBattleshipRandomly();
-      this.view.displayShip(this.computerModel.battleships)
     }
 
   }
