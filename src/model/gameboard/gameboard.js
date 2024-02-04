@@ -72,7 +72,6 @@ export default class Gameboard {
       if (ship === shipLength) {
         const index = this.legalShips.indexOf(ship);
         this.legalShips.splice(index, 1);
-        console.log(this.legalShips);
         legal = true;
       }
     });
@@ -237,8 +236,7 @@ export default class Gameboard {
   placeBattleshipRandomly() {
     const startCoordinate = this.arrayToKey(this.generateRandomCoordinates());
     const endCoordinate = this.arrayToKey(this.generateRandomCoordinates());
-    console.log(startCoordinate);
-    console.log(endCoordinate);
+
 
     const startVertex = this.findVertex(startCoordinate);
     const endVertex = this.findVertex(endCoordinate);
@@ -252,8 +250,6 @@ export default class Gameboard {
       const [vertex, path] = queue.dequeue();
       if (vertex === endVertex) {
         const extractedCoordinates = this.extractElements(path);
-        // check here if the number of legal ships is reached
-        console.log(extractedCoordinates);
         if (
           startVertex === endVertex ||
           !this.isNotDiagonal(startCoordinate, endCoordinate) ||
