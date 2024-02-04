@@ -1,8 +1,10 @@
 export default class Controller {
-  constructor(playerModel, computerModel, view) {
+  constructor(playerModel, computerModel, view, player, computer) {
     this.playerModel = playerModel;
     this.computerModel = computerModel;
     this.view = view;
+    this.player = player;
+    this.computer = computer;
     this.bindEvents();
   }
 
@@ -22,7 +24,7 @@ export default class Controller {
   };
 
   handlePlayerShootCell = (clickedCell) => {
-    this.computerModel.receiveAttack(clickedCell)
-    this.view.displayShots(this.computerModel.vertices, clickedCell)
-  }
+    this.computerModel.receiveAttack(clickedCell);
+    this.view.displayShots(this.computerModel.vertices, clickedCell);
+  };
 }
