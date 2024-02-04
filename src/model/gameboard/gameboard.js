@@ -234,15 +234,51 @@ export default class Gameboard {
     return input;
   }
 
-  generateRandomShip() {
-    const start = this.arrayToKey(this.generateRandomCoordinates());
-    const end = this.arrayToKey(this.generateRandomCoordinates());
+  placeBattleshipRandomly() {
+    const startCoordinate = this.arrayToKey(this.generateRandomCoordinates());
+    const endCoordinate = this.arrayToKey(this.generateRandomCoordinates());
+    console.log(startCoordinate);
+    console.log(endCoordinate);
 
-    if (this.isNotDiagonal(start, end)) {
-      return [start, end]
+    const startVertex = this.findVertex(startCoordinate);
+    const endVertex = this.findVertex(endCoordinate);
 
+    let queue = new Queue();
+    let visited = new Set();
+
+    queue.enqueue([startVertex, [startVertex.coordinates]]);
+    visited.add(startVertex);
+    while (queue.queue.length !== 0) {
+      const [vertex, path] = queue.dequeue();
+      if (vertex === endVertex) {
+        const extractedCoordinates = this.extractElements(path);
+        // check here if the number of legal ships is reached
+        console.log(extractedCoordinates);
+        if (
+          startVertex === endVertex ||
+          !this.isNotDiagonal(startCoordinate, endCoordinate) ||
+          !this.shipsDoNotIntersect(extractedCoordinates) ||
+          !this.shipIsLegal(extractedCoordinates.length)
+        ) {
+          return this.placeBattleshipRandomly();
+        }
+
+        const battleship = new Battleship(extractedCoordinates.length);
+        this.processCoordinates(extractedCoordinates, battleship);
+        this.battleships.push(battleship);
+      }
+      if (!visited.has(vertex)) {
+        visited.add(vertex);
+      }
+      vertex.connections.forEach((move) => {
+        if (!visited.has(move)) {
+          visited.add(move);
+          let newPath = path.concat(move.coordinates);
+          queue.enqueue([move, [newPath]]);
+        }
+      });
     }
-    return this.generateRandomShip();
+    return null;
   }
 
   /* 
