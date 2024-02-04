@@ -6,11 +6,17 @@ export default class Controller {
     this.player = player;
     this.computer = computer;
     this.bindEvents();
+    this.generateRandomComputersShip();
   }
 
   bindEvents() {
     this.view.bindShootCell(this.handlePlayerShootCell);
     this.view.bindSubmitCoordinates(this.handleSubmitCoordinates);
+  }
+
+  generateRandomComputersShip() {
+    const ship = this.computerModel.generateRandomShip();
+    console.log(ship);
   }
 
   handleSubmitCoordinates = () => {

@@ -224,4 +224,30 @@ export default class Gameboard {
   isGameOver(battleships) {
     return battleships.every((battleship) => battleship.sunk);
   }
+
+  generateRandomCoordinates() {
+    let input = [];
+    for (let i = 0; i < 2; i++) {
+      const randomInt = Math.floor(Math.random() * (10 - 1)) + 1;
+      input.push(randomInt);
+    }
+    return input;
+  }
+
+  generateRandomShip() {
+    const start = this.arrayToKey(this.generateRandomCoordinates());
+    const end = this.arrayToKey(this.generateRandomCoordinates());
+
+    if (this.isNotDiagonal(start, end)) {
+      return [start, end]
+
+    }
+    return this.generateRandomShip();
+  }
+
+  /* 
+    generate random coords
+    check if they are valid
+      if not -> generate new coords recursively
+    */
 }
