@@ -20,10 +20,10 @@ form>div{
 
 }
 
-input:valid{
+/* input:valid{
     border-color: var(--green);
 }
 
 input:invalid{
     border-color: var(--red);
-}
+} */
