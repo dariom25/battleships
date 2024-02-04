@@ -108,7 +108,8 @@ export default class View {
   bindShootCell = (handler) => {
     this.gridContainerComputer.addEventListener("click", (event) => {
       const clickedCell = event.target;
-      handler(clickedCell);
+      const shotCoordinates = clickedCell.classList.item(1)
+      handler(shotCoordinates);
     });
   };
 
