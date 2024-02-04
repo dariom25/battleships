@@ -1,6 +1,7 @@
 export default class Controller {
-  constructor(model, view) {
-    this.model = model;
+  constructor(playerModel, computerModel, view) {
+    this.playerModel = playerModel;
+    this.computerModel = computerModel;
     this.view = view;
     this.bindEvents();
   }
@@ -12,8 +13,11 @@ export default class Controller {
 
   handleSubmitCoordinates = () => {
     const startAndEndcoordinates = this.view.submitCoordinates();
-    this.model.placeBattleship(startAndEndcoordinates[0], startAndEndcoordinates[1])
-    this.view.displayShip(this.model.battleships);
+    this.playerModel.placeBattleship(
+      startAndEndcoordinates[0],
+      startAndEndcoordinates[1],
+    );
+    this.view.displayShip(this.playerModel.battleships);
     this.view.emptyInputs();
   };
 }

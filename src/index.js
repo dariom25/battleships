@@ -3,5 +3,6 @@ import Gameboard from "./model/gameboard/gameboard";
 import Controller from "./controller/controller";
 
 const view = new View();
-const model = new Gameboard();
-const app = new Controller(model, view);
+const playerModel = new Gameboard();
+const computerModel = new Gameboard();
+const app = new Controller(playerModel, computerModel, view);
