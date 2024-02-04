@@ -143,14 +143,13 @@ export default class Gameboard {
           alert("Ship intersects with other ship");
           return;
         }
-        
+
         if (!this.shipIsLegal(extractedCoordinates.length)) {
           alert(
             "Ship is too long or the maximum number of this ship is reached",
           );
           return;
         }
-
 
         const battleship = new Battleship(extractedCoordinates.length);
         this.processCoordinates(extractedCoordinates, battleship);
@@ -209,15 +208,13 @@ export default class Gameboard {
 
     const vertex = this.findVertex(coordinates);
     if (vertex.isHit === true) return null;
+    vertex.isHit = true;
     if (vertex.hasShip === true) {
       this.battleships.forEach((battleship) => {
         battleship.coordinates.forEach((coordinate) => {
           if (coordinate === vertex) {
-            vertex.isHit = true;
             battleship.hit();
             if (battleship.isSunk()) battleship.sunk = true;
-            // check if the game is over but what then?
-            this.isGameOver(this.battleships);
           }
         });
       });
