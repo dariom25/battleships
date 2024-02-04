@@ -3,33 +3,34 @@
   gap: 0.1rem;
 }
 
-.grid-header-row, .row-container {
+.grid-header-row,
+.row-container {
   display: grid;
   grid-template-columns: auto repeat(10, 1fr);
-
 }
 
-.row-container{
-  gap: 0.1rem
+.row-container {
+  gap: 0.1rem;
 }
 
-.corner-cell{
+.corner-cell {
   width: 2.5rem;
   height: 2.5rem;
 }
 
-.row-label, .col-label{
+.row-label,
+.col-label {
   width: 2.5rem;
   height: 2.5rem;
   display: flex;
 }
 
-.col-label{
+.col-label {
   justify-content: center;
   align-items: flex-end;
 }
 
-.row-label{
+.row-label {
   justify-content: flex-end;
   align-items: center;
 }
@@ -51,6 +52,14 @@
   justify-content: center;
 }
 
-.ship{
+.ship {
   background-color: var(--green);
+}
+
+.ship-hit {
+  background-color: var(--red);
+}
+
+.water-hit {
+  background-color: var(--blue);
 }
