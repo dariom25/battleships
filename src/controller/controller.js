@@ -22,6 +22,7 @@ export default class Controller {
   };
 
   handlePlayerShootCell = (clickedCell) => {
-    this.playerModel.receiveAttack(clickedCell)
+    this.computerModel.receiveAttack(clickedCell)
+    this.view.displayShots(this.computerModel.vertices, clickedCell)
   }
 }

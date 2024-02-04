@@ -108,10 +108,23 @@ export default class View {
   bindShootCell = (handler) => {
     this.gridContainerComputer.addEventListener("click", (event) => {
       const clickedCell = event.target;
-      const shotCoordinates = clickedCell.classList.item(1)
+      const shotCoordinates = clickedCell.classList.item(1);
       handler(shotCoordinates);
     });
   };
+
+  displayShots(vertices, clickedCell) {
+    const vertex = vertices[clickedCell];
+    const coordinates = this.arrayToKey(vertex.coordinates);
+    const cell = document
+      .getElementsByClassName(`cell ${coordinates} Computer`)
+      .item(0);
+    if (vertex.isHit && vertex.hasShip) {
+      cell.classList.add("ship-hit");
+    } else if (vertex.isHit) {
+      cell.classList.add("water-hit");
+    }
+  }
 
   bindSubmitCoordinates = (handler) => {
     this.submitButton.addEventListener("click", (event) => {
