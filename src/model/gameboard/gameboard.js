@@ -139,16 +139,18 @@ export default class Gameboard {
       if (vertex === endVertex) {
         const extractedCoordinates = this.extractElements(path);
         // check here if the number of legal ships is reached
+        if (!this.shipsDoNotIntersect(extractedCoordinates)) {
+          alert("Ship intersects with other ship");
+          return;
+        }
+        
         if (!this.shipIsLegal(extractedCoordinates.length)) {
           alert(
             "Ship is too long or the maximum number of this ship is reached",
           );
           return;
         }
-        if (!this.shipsDoNotIntersect(extractedCoordinates)) {
-          alert("Ship intersects with other ship");
-          return;
-        }
+
 
         const battleship = new Battleship(extractedCoordinates.length);
         this.processCoordinates(extractedCoordinates, battleship);
