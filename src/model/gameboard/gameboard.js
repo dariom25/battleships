@@ -76,7 +76,7 @@ export default class Gameboard {
         legal = true;
       }
     });
-    return legal
+    return legal;
   }
 
   shipsDoNotIntersect(shipCoordinates) {
@@ -117,13 +117,10 @@ export default class Gameboard {
   }
 
   placeBattleship(startCoordinate, endCoordinate) {
-    // check if the coordinates are legal
-    // check if ship exists already
-    // check if coordinates are already used
-
-    if (!this.isNotDiagonal(startCoordinate, endCoordinate))
-      throw new Error("Diagonal ships are invalid");
-    // empty inputs
+    if (!this.isNotDiagonal(startCoordinate, endCoordinate)) {
+      alert("Diagonal ships are invalid");
+      return;
+    }
 
     const startVertex = this.findVertex(startCoordinate);
     const endVertex = this.findVertex(endCoordinate);
@@ -142,13 +139,16 @@ export default class Gameboard {
       if (vertex === endVertex) {
         const extractedCoordinates = this.extractElements(path);
         // check here if the number of legal ships is reached
-        if (!this.shipIsLegal(extractedCoordinates.length))
-          throw new Error(
+        if (!this.shipIsLegal(extractedCoordinates.length)) {
+          alert(
             "Ship is too long or the maximum number of this ship is reached",
           );
-
-        if (!this.shipsDoNotIntersect(extractedCoordinates))
-          throw new Error("Ship intersects with other ship");
+          return;
+        }
+        if (!this.shipsDoNotIntersect(extractedCoordinates)) {
+          alert("Ship intersects with other ship");
+          return;
+        }
 
         const battleship = new Battleship(extractedCoordinates.length);
         this.processCoordinates(extractedCoordinates, battleship);
