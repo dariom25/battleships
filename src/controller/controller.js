@@ -15,8 +15,11 @@ export default class Controller {
   }
 
   generateRandomComputersShip() {
-    const ship = this.computerModel.generateRandomShip();
-    console.log(ship);
+    for (let i = 0; i < 5; i++) {
+      this.computerModel.placeBattleshipRandomly();
+      this.view.displayShip(this.computerModel.battleships)
+    }
+
   }
 
   handleSubmitCoordinates = () => {
