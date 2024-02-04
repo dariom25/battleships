@@ -134,4 +134,10 @@ export default class View {
       }
     });
   };
+
+  bindGenerateRandomPlayerShips = (handler) => {
+    this.randomButton.addEventListener("click", () => {
+      handler();
+    });
+  };
 }
