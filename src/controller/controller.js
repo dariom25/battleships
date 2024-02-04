@@ -7,7 +7,7 @@ export default class Controller {
   }
 
   bindEvents() {
-    this.view.bindShootCell();
+    this.view.bindShootCell(this.handlePlayerShootCell);
     this.view.bindSubmitCoordinates(this.handleSubmitCoordinates);
   }
 
@@ -20,4 +20,8 @@ export default class Controller {
     this.view.displayShip(this.playerModel.battleships);
     this.view.emptyInputs();
   };
+
+  handlePlayerShootCell = (clickedCell) => {
+    this.playerModel.receiveAttack(clickedCell)
+  }
 }
