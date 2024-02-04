@@ -94,7 +94,7 @@ export default class View {
       .getElementsByClassName(`cell ${coordinates} Player`)
       .item(0);
     return cell;
-  }
+  } // here is just the player grid searched. maybe add additional arguments
 
   arrayToKey(array) {
     if (!Array.isArray(array)) throw new Error("Input is not an array");
