@@ -47,6 +47,7 @@ export default class Controller {
   };
 
   handleResetPlayerShips = () => {
+    this.playerModel.resetShips();
     this.view.resetPlayerShips();
   };
 }
