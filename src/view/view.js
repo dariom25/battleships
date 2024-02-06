@@ -15,7 +15,7 @@ export default class View {
   }
 
   cacheElements() {
-    this.resetButton = document.querySelector(".submit-button");
+    this.resetButton = document.querySelector(".reset-button");
     this.randomButton = document.querySelector(".random-button");
     this.startButton = document.querySelector(".start-button");
     this.submitButton = document.querySelector(".submit-button");
@@ -146,4 +146,15 @@ export default class View {
       handler();
     });
   };
+
+  resetPlayerShips() {
+    const cells = document.getElementsByClassName("cell Player")
+    for (let i = 0; i < cells.length; i++) {
+      if (cells[i].classList.contains("ship")) {
+        cells[i].classList.remove("ship");
+      }
+    }
+  }
 }
+
+//       if (cells[i].classList.contains("ship-hit")) {}
