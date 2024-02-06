@@ -157,4 +157,10 @@ export default class View {
   }
 }
 
+bindStartGame = (handler) => {
+  this.startButton.addEventListener("click", () => {
+    handler();
+  });
+};
+
 //       if (cells[i].classList.contains("ship-hit")) {}
