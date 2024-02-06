@@ -237,7 +237,6 @@ export default class Gameboard {
     const startCoordinate = this.arrayToKey(this.generateRandomCoordinates());
     const endCoordinate = this.arrayToKey(this.generateRandomCoordinates());
 
-
     const startVertex = this.findVertex(startCoordinate);
     const endVertex = this.findVertex(endCoordinate);
 
@@ -276,6 +275,4 @@ export default class Gameboard {
     }
     return null;
   }
-
-
 }

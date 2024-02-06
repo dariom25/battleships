@@ -148,7 +148,7 @@ export default class View {
   };
 
   resetPlayerShips() {
-    const cells = document.getElementsByClassName("cell Player")
+    const cells = document.getElementsByClassName("cell Player");
     for (let i = 0; i < cells.length; i++) {
       if (cells[i].classList.contains("ship")) {
         cells[i].classList.remove("ship");
