@@ -140,4 +140,10 @@ export default class View {
       handler();
     });
   };
+
+  bindResetPlayerShips = (handler) => {
+    this.resetButton.addEventListener("click", () => {
+      handler();
+    });
+  };
 }
