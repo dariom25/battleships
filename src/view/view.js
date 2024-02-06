@@ -113,11 +113,11 @@ export default class View {
     });
   };
 
-  displayShots(vertices, clickedCell) {
+  displayShots(vertices, clickedCell, boardType) {
     const vertex = vertices[clickedCell];
     const coordinates = this.arrayToKey(vertex.coordinates);
     const cell = document
-      .getElementsByClassName(`cell ${coordinates} Computer`)
+      .getElementsByClassName(`cell ${coordinates} ${boardType}`)
       .item(0);
     if (vertex.isHit && vertex.hasShip) {
       cell.classList.add("ship-hit");

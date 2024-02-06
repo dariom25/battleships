@@ -7,15 +7,16 @@ export default class Controller {
     this.computer = computer;
     this.bindEvents();
     this.generateRandomComputerShips();
+    this.computerShoots()
   }
 
   bindEvents() {
-    this.view.bindShootCell(this.handlePlayerShootCell);
     this.view.bindSubmitCoordinates(this.handleSubmitCoordinates);
     this.view.bindGenerateRandomPlayerShips(
       this.handleGenerateRandomPlayerShips,
     );
     this.view.bindResetPlayerShips(this.handleResetPlayerShips);
+    this.view.bindStartGame(this.handleStartGame)
   }
 
   generateRandomComputerShips() {
@@ -36,7 +37,7 @@ export default class Controller {
 
   handlePlayerShootCell = (clickedCell) => {
     this.computerModel.receiveAttack(clickedCell);
-    this.view.displayShots(this.computerModel.vertices, clickedCell);
+    this.view.displayShots(this.computerModel.vertices, clickedCell, "Computer");
   };
 
   handleGenerateRandomPlayerShips = () => {
@@ -50,4 +51,16 @@ export default class Controller {
     this.playerModel.resetShips();
     this.view.resetPlayerShips();
   };
+
+  handleStartGame =  () => {
+    if (this.playerModel.checkIfAllShipsArePlaced()) {
+      this.view.bindShootCell(this.handlePlayerShootCell);
+    }
+  }
+
+  computerShoots = () => {
+    const coordinates = this.computerModel.generateRandomCoordinates();
+    this.playerModel.receiveAttack(coordinates)
+    this.view.displayShots(this.playerModel.vertices, this.playerModel.arrayToKey(coordinates), "Player")
+  }
 }
