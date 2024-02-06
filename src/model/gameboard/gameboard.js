@@ -283,4 +283,9 @@ export default class Gameboard {
       vertex.hasShip = false;
     });
   }
+
+  checkIfAllShipsArePlaced() {
+    if (this.battleships.length === 5) return true;
+    alert("Please place all your ships first.")
+  }
 }
