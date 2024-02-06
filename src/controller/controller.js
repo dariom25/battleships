@@ -6,19 +6,19 @@ export default class Controller {
     this.player = player;
     this.computer = computer;
     this.bindEvents();
-    this.generateRandomComputersShip();
+    this.generateRandomComputerShips();
   }
 
   bindEvents() {
     this.view.bindShootCell(this.handlePlayerShootCell);
     this.view.bindSubmitCoordinates(this.handleSubmitCoordinates);
+    this.view.bindGenerateRandomPlayerShips(this.handleGenerateRandomPlayerShips)
   }
 
-  generateRandomComputersShips() {
+  generateRandomComputerShips() {
     for (let i = 0; i < 5; i++) {
       this.computerModel.placeBattleshipRandomly();
     }
-
   }
 
   handleSubmitCoordinates = () => {
@@ -35,4 +35,11 @@ export default class Controller {
     this.computerModel.receiveAttack(clickedCell);
     this.view.displayShots(this.computerModel.vertices, clickedCell);
   };
+
+  handleGenerateRandomPlayerShips = () => {
+    for (let i = 0; i < 5; i++) {
+      this.playerModel.placeBattleshipRandomly();
+      this.view.displayShip(this.playerModel.battleships)
+    }
+  }
 }
