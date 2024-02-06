@@ -15,6 +15,7 @@ export default class Controller {
     this.view.bindGenerateRandomPlayerShips(
       this.handleGenerateRandomPlayerShips,
     );
+    this.view.bindResetPlayerShips(this.handleResetPlayerShips)
   }
 
   generateRandomComputerShips() {
@@ -44,4 +45,8 @@ export default class Controller {
       this.view.displayShip(this.playerModel.battleships);
     }
   };
+
+  handleResetPlayerShips = () => {
+    this.view.resetPlayerShips()
+  }
 }
