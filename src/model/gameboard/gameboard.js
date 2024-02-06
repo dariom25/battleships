@@ -275,4 +275,12 @@ export default class Gameboard {
     }
     return null;
   }
+
+  resetShips() {
+    this.legalShips = [5, 4, 3, 2, 2];
+    this.battleships = [];
+    Object.values(this.vertices).forEach((vertex) => {
+      vertex.hasShip = false;
+    });
+  }
 }
