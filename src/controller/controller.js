@@ -12,7 +12,9 @@ export default class Controller {
   bindEvents() {
     this.view.bindShootCell(this.handlePlayerShootCell);
     this.view.bindSubmitCoordinates(this.handleSubmitCoordinates);
-    this.view.bindGenerateRandomPlayerShips(this.handleGenerateRandomPlayerShips)
+    this.view.bindGenerateRandomPlayerShips(
+      this.handleGenerateRandomPlayerShips,
+    );
   }
 
   generateRandomComputerShips() {
@@ -39,7 +41,7 @@ export default class Controller {
   handleGenerateRandomPlayerShips = () => {
     for (let i = 0; i < 5; i++) {
       this.playerModel.placeBattleshipRandomly();
-      this.view.displayShip(this.playerModel.battleships)
+      this.view.displayShip(this.playerModel.battleships);
     }
-  }
+  };
 }

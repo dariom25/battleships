@@ -277,9 +277,5 @@ export default class Gameboard {
     return null;
   }
 
-  /* 
-    generate random coords
-    check if they are valid
-      if not -> generate new coords recursively
-    */
+
 }
