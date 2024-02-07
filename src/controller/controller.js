@@ -39,7 +39,7 @@ export default class Controller {
     this.computerModel.receiveAttack(clickedCell)
     this.view.displayShots(this.computerModel.vertices, clickedCell, "Computer");
 
-    this.computerShoots()
+    setTimeout(() => this.computerShoots(), 300)
   };
 
   handleGenerateRandomPlayerShips = () => {
