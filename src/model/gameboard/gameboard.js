@@ -227,7 +227,7 @@ export default class Gameboard {
   generateRandomCoordinates() {
     let input = [];
     for (let i = 0; i < 2; i++) {
-      const randomInt = Math.floor(Math.random() * (10 - 1)) + 1;
+      const randomInt = Math.floor(Math.random() * 10) + 1;
       input.push(randomInt);
     }
     return input;
@@ -287,5 +287,13 @@ export default class Gameboard {
   checkIfAllShipsArePlaced() {
     if (this.battleships.length === 5) return true;
     alert("Please place all your ships first.")
+  }
+
+  checkIfCoordinatesAreNotHit() {
+    const coordinates = this.generateRandomCoordinates();
+    if (this.receiveAttack(coordinates) === null) {
+      return this.checkIfCoordinatesAreNotHit()
+    }
+    return coordinates
   }
 }

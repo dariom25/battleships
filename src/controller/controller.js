@@ -7,7 +7,6 @@ export default class Controller {
     this.computer = computer;
     this.bindEvents();
     this.generateRandomComputerShips();
-    this.computerShoots()
   }
 
   bindEvents() {
@@ -36,8 +35,11 @@ export default class Controller {
   };
 
   handlePlayerShootCell = (clickedCell) => {
-    this.computerModel.receiveAttack(clickedCell);
+    if (this.computerModel.receiveAttack(clickedCell) === null) return;
+    this.computerModel.receiveAttack(clickedCell)
     this.view.displayShots(this.computerModel.vertices, clickedCell, "Computer");
+
+    this.computerShoots()
   };
 
   handleGenerateRandomPlayerShips = () => {
@@ -58,8 +60,8 @@ export default class Controller {
     }
   }
 
-  computerShoots = () => {
-    const coordinates = this.computerModel.generateRandomCoordinates();
+  computerShoots = () => {    
+    const coordinates = this.playerModel.checkIfCoordinatesAreNotHit(); //sometimes he generates coordinates which were already targeted --> hits them double time
     this.playerModel.receiveAttack(coordinates)
     this.view.displayShots(this.playerModel.vertices, this.playerModel.arrayToKey(coordinates), "Player")
   }
