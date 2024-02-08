@@ -35,9 +35,12 @@ export default class Controller {
   };
 
   handlePlayerShootCell = (clickedCell) => {
+
     if (this.computerModel.receiveAttack(clickedCell) === null) return;
     this.computerModel.receiveAttack(clickedCell)
     this.view.displayShots(this.computerModel.vertices, clickedCell, "Computer");
+    this.playerModel.turn++
+    this.view.displayWhoseTurnItIs(this.playerModel.turn)
 
     setTimeout(() => this.computerShoots(), 300)
   };
@@ -57,12 +60,16 @@ export default class Controller {
   handleStartGame =  () => {
     if (this.playerModel.checkIfAllShipsArePlaced()) {
       this.view.bindShootCell(this.handlePlayerShootCell);
+      this.view.displayWhoseTurnItIs(this.playerModel.turn)
+
     }
   }
 
-  computerShoots = () => {    
-    const coordinates = this.playerModel.checkIfCoordinatesAreNotHit(); //sometimes he generates coordinates which were already targeted --> hits them double time
+  computerShoots = () => { // does not belong here!! belongs to maybe a player class
+    const coordinates = this.playerModel.checkIfCoordinatesAreNotHit(); 
     this.playerModel.receiveAttack(coordinates)
     this.view.displayShots(this.playerModel.vertices, this.playerModel.arrayToKey(coordinates), "Player")
+    this.playerModel.turn--
+    this.view.displayWhoseTurnItIs(this.playerModel.turn)
   }
 }
