@@ -47,9 +47,17 @@
   font-size: 2rem;
   color: var(--black);
   margin: 0.5rem 0rem;
+  padding: 0.1rem;
   text-decoration: underline;
   display: flex;
   justify-content: center;
+}
+
+.turn{
+  background-color: var(--green);
+  border-radius: 10px;
+  margin-left: 16%;
+  margin-right: 16%;
 }
 
 .ship {
