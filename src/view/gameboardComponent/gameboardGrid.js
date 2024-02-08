@@ -70,6 +70,7 @@ export default class GameboardGrid {
     const title = document.createElement("div");
     title.textContent = `${gridTitle}:`;
     title.classList.add("role-title");
+    title.classList.add(`${gridTitle}`);
     gameboardContainer.appendChild(title);
   }
 }
