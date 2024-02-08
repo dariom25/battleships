@@ -220,8 +220,10 @@ export default class Gameboard {
     }
   }
 
-  isGameOver(battleships) {
-    return battleships.every((battleship) => battleship.sunk);
+  isGameOver(battleships, role) {
+    if (battleships.every((battleship) => battleship.sunk === true)) {
+      alert(`${role} loses. Game is over.`);
+    }
   }
 
   generateRandomCoordinates() {
@@ -286,14 +288,14 @@ export default class Gameboard {
 
   checkIfAllShipsArePlaced() {
     if (this.battleships.length === 5) return true;
-    alert("Please place all your ships first.")
+    alert("Please place all your ships first.");
   }
 
   checkIfCoordinatesAreNotHit() {
     const coordinates = this.generateRandomCoordinates();
     if (this.receiveAttack(coordinates) === null) {
-      return this.checkIfCoordinatesAreNotHit()
+      return this.checkIfCoordinatesAreNotHit();
     }
-    return coordinates
+    return coordinates;
   }
 }

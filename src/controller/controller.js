@@ -15,7 +15,7 @@ export default class Controller {
       this.handleGenerateRandomPlayerShips,
     );
     this.view.bindResetPlayerShips(this.handleResetPlayerShips);
-    this.view.bindStartGame(this.handleStartGame)
+    this.view.bindStartGame(this.handleStartGame);
   }
 
   generateRandomComputerShips() {
@@ -35,14 +35,17 @@ export default class Controller {
   };
 
   handlePlayerShootCell = (clickedCell) => {
-
     if (this.computerModel.receiveAttack(clickedCell) === null) return;
-    this.computerModel.receiveAttack(clickedCell)
-    this.view.displayShots(this.computerModel.vertices, clickedCell, "Computer");
-    this.playerModel.turn++
-    this.view.displayWhoseTurnItIs(this.playerModel.turn)
-
-    setTimeout(() => this.computerShoots(), 300)
+    this.computerModel.receiveAttack(clickedCell);
+    this.view.displayShots(
+      this.computerModel.vertices,
+      clickedCell,
+      "Computer",
+    );
+    this.playerModel.turn++;
+    this.view.displayWhoseTurnItIs(this.playerModel.turn);
+    this.playerModel.isGameOver(this.playerModel.battleships, "Player");
+    setTimeout(() => this.computerShoots(), 300);
   };
 
   handleGenerateRandomPlayerShips = () => {
@@ -57,19 +60,24 @@ export default class Controller {
     this.view.resetPlayerShips();
   };
 
-  handleStartGame =  () => {
+  handleStartGame = () => {
     if (this.playerModel.checkIfAllShipsArePlaced()) {
       this.view.bindShootCell(this.handlePlayerShootCell);
-      this.view.displayWhoseTurnItIs(this.playerModel.turn)
-
+      this.view.displayWhoseTurnItIs(this.playerModel.turn);
     }
-  }
+  };
 
-  computerShoots = () => { // does not belong here!! belongs to maybe a player class
-    const coordinates = this.playerModel.checkIfCoordinatesAreNotHit(); 
-    this.playerModel.receiveAttack(coordinates)
-    this.view.displayShots(this.playerModel.vertices, this.playerModel.arrayToKey(coordinates), "Player")
-    this.playerModel.turn--
-    this.view.displayWhoseTurnItIs(this.playerModel.turn)
-  }
+  computerShoots = () => {
+    // does not belong here!! belongs to maybe a player class
+    const coordinates = this.playerModel.checkIfCoordinatesAreNotHit();
+    this.playerModel.receiveAttack(coordinates);
+    this.view.displayShots(
+      this.playerModel.vertices,
+      this.playerModel.arrayToKey(coordinates),
+      "Player",
+    );
+    this.playerModel.turn--;
+    this.view.displayWhoseTurnItIs(this.playerModel.turn);
+    this.computerModel.isGameOver(this.computerModel.battleships, "Computer");
+  };
 }
