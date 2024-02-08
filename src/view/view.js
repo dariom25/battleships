@@ -161,6 +161,20 @@ export default class View {
       handler();
     });
   };
+
+  displayWhoseTurnItIs(turn) {
+    if (turn === 0) {
+      const active = document.querySelector(".role-title.Player")
+      active.classList.add("turn")
+      const inactive = document.querySelector(".role-title.Computer")
+      inactive.classList.remove("turn")
+    } else if (turn === 1) {
+      const active = document.querySelector(".role-title.Computer")
+      active.classList.add("turn")
+      const inactive = document.querySelector(".role-title.Player")
+      inactive.classList.remove("turn")
+    }
+  }
 }
 
 // if (cells[i].classList.contains("ship-hit")) {}
